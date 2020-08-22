@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<conio.h>
+#include<malloc.h>
+struct stack
+{
+int data;
+struct stack *link;
+};
+struct stack *top=NULL;
+void push(int );
+int pop();
+void main()
+{
+int x;
+clrscr();
+push(10);
+push(20);
+x=pop();
+printf("%d",x);//popping from top
+getch();
+}
+void push(int num)
+{
+struct stack  *r;
+r=(struct stack *)malloc(sizeof(struct stack));
+r->data=num;
+r->link=top;
+printf("%u",r->link);
+top=r;
+printf("%u",top);
+}
+int pop()
+{
+struct stack *temp;int n;
+if(top==NULL)
+{
+printf("underflow");
+return(-1);
+}
+temp=top;
+n=top->data;
+top=top->link;
+free(temp);
+return(n);
+}
